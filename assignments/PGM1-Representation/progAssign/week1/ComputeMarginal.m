@@ -29,5 +29,15 @@ end
 
 M = struct('var', [], 'card', [], 'val', []); % Returns empty factor. Change this.
 
+Joint = ComputeJointDistribution(F);
+JointObserved = ObserveEvidence(Joint,E);
+JointMargin = FactorMarginalization(JointObserved,setdiff(JointObserved.var,V));
+JointMargin.val = JointMargin.val/sum(JointMargin.val);
+
+M = JointMargin;
+
+
+  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
